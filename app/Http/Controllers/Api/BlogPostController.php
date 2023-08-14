@@ -17,7 +17,7 @@ class BlogPostController extends Controller
         $category_id = $request->query('category_id');
         $blogPosts = [];
         if($category_id){
-            $blogPosts = BlogPost::where('category_id', '=', $category_id)->get();
+            $blogPosts = BlogPost::where('category_id', $category_id)->get();
         }else{
             $blogPosts = BlogPost::all();
         }
