@@ -21,22 +21,26 @@ Route::get('/', [DashboardController::class, 'index']);
 
 /// Start Category Routes
 
-Route::get('create-category', [CategoryController::class, 'create']);
-Route::post('post-category-form', [CategoryController::class, 'store']);
-Route::get('all-categories', [CategoryController::class, 'index']);
-Route::get('edit-category/{id}', [CategoryController::class, 'edit']);
-Route::post('update-category/{id}', [CategoryController::class, 'update']);
-Route::get('delete-category/{id}', [CategoryController::class, 'destroy']);
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('create-category',  'create');
+    Route::post('post-category-form',  'store');
+    Route::get('all-categories',  'index');
+    Route::get('edit-category/{id}',  'edit');
+    Route::post('update-category/{id}',  'update');
+    Route::get('delete-category/{id}',  'destroy');
+});
 
 /// End Category Routes
 
 /// Start Blog Post Routes
 
-Route::get('get-blog-post-form', [BlogPostController::class, 'create']);
-Route::post('store-blog-post', [BlogPostController::class, 'store']);
-Route::get('all-blog-posts', [BlogPostController::class, 'index']);
-Route::get('edit-blog-post/{id}', [BlogPostController::class, 'edit']);
-Route::post('update-blog-post/{id}', [BlogPostController::class, 'update']);
-Route::get('delete-blog-post/{id}', [BlogPostController::class, 'destroy']);
+Route::controller(BlogPostController::class)->group(function () {
+    Route::get('get-blog-post-form', 'create');
+    Route::post('store-blog-post', 'store');
+    Route::get('all-blog-posts', 'index');
+    Route::get('edit-blog-post/{id}', 'edit');
+    Route::post('update-blog-post/{id}', 'update');
+    Route::get('delete-blog-post/{id}', 'destroy');
+});
 
 /// End Blog Post Routes
