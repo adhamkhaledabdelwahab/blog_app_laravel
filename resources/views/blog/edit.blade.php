@@ -24,8 +24,8 @@
         @csrf
         <div class="form-group">
             <label for="exampleInputEmail1">Blog Title <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                placeholder="Enter blog title" name="blogTitle" value="{{ $blogPost->title }}">
+            <input type="text" class="form-control" aria-describedby="emailHelp"
+                placeholder="Enter blog title" id="blogTitle" name="blogTitle" value="{{ $blogPost->title }}">
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Blog Details <span class="text-danger">*</span></label>
@@ -33,7 +33,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Select Category <span class="text-danger">*</span></label>
-            <select name="category" class="form-control">
+            <select name="category" class="form-control" id="category">
                 <option disabled selected hidden>Select</option>
                 @foreach ($categories as $category)
                     <option @if ($category->id == $blogPost->category_id) selected @endif value="{{ $category->id }}">
@@ -54,12 +54,19 @@
 
     <script>
         function validateBlogDetails() {
-            var editor = CKEDITOR.instances.editor.editable().getText();
-            if (editor.trim() === "") {
-                alert("Please fill out required fields!");
+            try {
+                var title = document.getElementById("blogTitle").value;
+                var details = CKEDITOR.instances.editor.getData();
+                var category = document.getElementById("category").value;
+                if (details.trim() === "" || title.trim() === "" || category.trim() === "") {
+                    alert("Please fill out required fields!");
+                    return false;
+                }
+                return true;
+            } catch (e) {
+                console.log(e);
                 return false;
             }
-            return true;
         }
 
         function loadPhoto(event) {

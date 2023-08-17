@@ -20,7 +20,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ URL::to('css/sb-admin-2.min.css') }}" rel="stylesheet">
 
-    <script src="{{ URL::to('vendor\ckeditor\ckeditor.js') }}"></script>
+    <script src="{{ URL::to('https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js') }}"></script>
 
 </head>
 
@@ -315,7 +315,7 @@
     <script src="{{ URL::to('js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ URL::to('js/demo/chart-pie-demo.js') }}"></script>
     <script>
-        CKEDITOR.replace('editor');
+        CKEDITOR.replace('editor');;
     </script>
 
 </body>
